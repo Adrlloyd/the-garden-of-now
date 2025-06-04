@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Compiled output
+dist/
+
+# Env variables
+.env
+
+# Logs
+*.log
+logs/
+
+# macOS system files
+.DS_Store

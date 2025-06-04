@@ -1,0 +1,24 @@
+{
+  "name": "the-garden-of-now",
+  "version": "1.0.0",
+  "description": "The Garden of Now - a recipe generator that helps you eat more seasonal food, locally grown.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olistogdale/the-garden-of-now.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/olistogdale/the-garden-of-now/issues"
+  },
+  "homepage": "https://github.com/olistogdale/the-garden-of-now#readme",
+  "dependencies": {
+    "vite": "^6.3.5"
+  }
+}
