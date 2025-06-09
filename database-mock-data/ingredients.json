@@ -85,7 +85,7 @@
       "leek",
       "parsnip",
       "potato",
-      "purple sprouting broccoli",
+      "purple sprouting",
       "salsify",
       "shallot",
       "swede",
@@ -135,7 +135,7 @@
       "cauliflower",
       "kale",
       "leek",
-      "purple sprouting broccoli",
+      "purple sprouting",
       "salsify",
       "spinach",
       "spring onion",
@@ -177,7 +177,7 @@
       "new potato",
       "lettuce",
       "salad",
-      "purple sprouting broccoli",
+      "purple sprouting",
       "radish",
       "rocket",
       "samphire",
@@ -988,7 +988,12 @@
       "cider",
       "sausage",
       "pancetta",
-      "bacon"
+      "bacon",
+      "shortcrust pastry",
+      "filo pastry",
+      "puff pastry",
+      "risotto rice",
+      "ground almonds"
     ]
   }
 ]

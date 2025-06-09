@@ -162,7 +162,7 @@
     "description": "Sea bream fillets seared until crispy, served with boiled new potatoes and buttered samphire.",
     "ingredients": [
       {
-        "name": "Sea Bream",
+        "name": "Bream",
         "measure": "Fillets",
         "number": 2
       },
@@ -231,9 +231,9 @@
     "description": "Langoustine tail meat gently cooked with a fresh pea purée and spring onions in a creamy risotto base.",
     "ingredients": [
       {
-        "name": "Langoustine Tails",
-        "measure": "Grammes",
-        "number": 200
+        "name": "Langoustine",
+        "measure": "Tails",
+        "number": 4
       },
       {
         "name": "Peas",
@@ -305,16 +305,16 @@
     ]
   },
   {
-    "name": "Bilberry & Almond Tart",
-    "image": "/images/bilberry-almond-frangipane-tart.png",
+    "name": "Blueberry & Almond Tart",
+    "image": "/images/blueberry-almond-frangipane-tart.png",
     "mealType": "Dessert",
     "preparationTime": 50,
     "difficulty": "Moderate",
     "servings": 6,
-    "description": "A shortcrust pastry tart filled with almond frangipane and fresh bilberries, served warm with cream.",
+    "description": "A shortcrust pastry tart filled with almond frangipane and fresh blueberries, served warm with cream.",
     "ingredients": [
       {
-        "name": "Bilberries",
+        "name": "Blueberries",
         "measure": "Grammes",
         "number": 150
       },
@@ -360,7 +360,7 @@
       },
       {
         "heading": "Step 3",
-        "body": "Spread the frangipane evenly into the chilled pastry case. Scatter the bilberries over the top, gently pressing them into the filling."
+        "body": "Spread the frangipane evenly into the chilled pastry case. Scatter the blueberries over the top, gently pressing them into the filling."
       },
       {
         "heading": "Step 4",
