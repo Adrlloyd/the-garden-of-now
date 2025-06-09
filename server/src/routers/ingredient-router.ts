@@ -1,16 +1,11 @@
+'use strict';
+
 import Router from 'koa-router'
+
+import { getIngredientsBySeason } from '../controllers/ingredient-controller';
 
 const ingredientRouter = new Router()
 
-let cb = () => {
-  return ['tomato', 'aubergine', 'mozzarella', 'flour'];
-}
-
-let cb2 = () => {
-  return ['tomato', 'flour', 'mozzarella']
-}
-
-ingredientRouter.get('./ingredients', cb)
-ingredientRouter.get('./ingredients/:month', cb2)
+ingredientRouter.get('/ingredients/:month', getIngredientsBySeason)
 
 export default ingredientRouter;
