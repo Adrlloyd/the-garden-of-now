@@ -1,5 +1,6 @@
 [
   {
+    "type": "seasonal",
     "month": "january",
     "vegetables": [
       "beetroot",
@@ -71,6 +72,7 @@
     ]
   },
   {
+    "type": "seasonal",
     "month": "february",
     "vegetables": [
       "brussels sprout",
@@ -127,6 +129,7 @@
     ]
   },
   {
+    "type": "seasonal",
     "month": "march",
     "vegetables": [
       "cauliflower",
@@ -166,6 +169,7 @@
     ]
   },
   {
+    "type": "seasonal",
     "month": "april",
     "vegetables": [
       "asparagus",
@@ -211,6 +215,7 @@
     ]
   },
   {
+    "type": "seasonal",
     "month": "may",
     "vegetables": [
       "asparagus",
@@ -269,6 +274,7 @@
     ]
   },
   {
+    "type": "seasonal",
     "month": "june",
     "vegetables": [
       "artichoke",
@@ -354,6 +360,7 @@
     ]
   },
   {
+    "type": "seasonal",
     "month": "july",
     "vegetables": [
       "artichoke",
@@ -442,6 +449,7 @@
     ]
   },
   {
+    "type": "seasonal",
     "month": "august",
     "vegetables": [
       "artichoke",
@@ -537,6 +545,7 @@
     ]
   },
   {
+    "type": "seasonal",
     "month": "september",
     "vegetables": [
       "artichoke",
@@ -647,6 +656,7 @@
     ]
   },
   {
+    "type": "seasonal",
     "month": "october",
     "vegetables": [
       "artichoke",
@@ -749,6 +759,7 @@
     ]
   },
   {
+    "type": "seasonal",
     "month": "november",
     "vegetables": [
       "artichoke",
@@ -830,6 +841,7 @@
     ]
   },
   {
+    "type": "seasonal",
     "month": "december",
     "vegetables": [
       "beetroot",
@@ -901,6 +913,7 @@
     ]
   },
   {
+    "type": "non-seasonal",
     "month": "universal",
     "ingredients": [
       "eggs",
