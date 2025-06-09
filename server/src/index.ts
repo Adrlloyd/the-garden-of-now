@@ -2,6 +2,7 @@
 
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
+import serve from 'koa-static';
 import cors from '@koa/cors';
 
 import { ingredientRouter } from './routers/ingredient-router';
@@ -12,6 +13,7 @@ const app = new Koa();
 const PORT = config.port
 
 app.use(cors());
+app.use(serve(config.path))
 app.use(bodyParser());
 app.use(ingredientRouter.routes());
 app.use(recipeRouter.routes());
