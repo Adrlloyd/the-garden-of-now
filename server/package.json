@@ -13,11 +13,13 @@
   "type": "commonjs",
   "dependencies": {
     "@koa/cors": "^5.0.0",
+    "@types/koa-static": "^4.0.4",
     "@types/pluralize": "^0.0.33",
     "dotenv": "^16.5.0",
     "koa": "^3.0.0",
     "koa-bodyparser": "^4.4.1",
     "koa-router": "^13.0.1",
+    "koa-static": "^5.0.0",
     "mongoose": "^8.15.1",
     "pluralize": "^8.0.0"
   },
