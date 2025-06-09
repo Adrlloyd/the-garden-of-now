@@ -17,7 +17,8 @@
     "koa": "^3.0.0",
     "koa-bodyparser": "^4.4.1",
     "koa-router": "^13.0.1",
-    "mongoose": "^8.15.1"
+    "mongoose": "^8.15.1",
+    "pluralize": "^8.0.0"
   },
   "devDependencies": {
     "@types/koa": "^2.15.0",
