@@ -1,11 +1,11 @@
+'use strict';
+
 import Router from 'koa-router'
+
+import { getRecipesBySeason } from '../controllers/recipe-controller';
 
 const recipeRouter = new Router()
 
-let cb = () => {
-  return ['spaghetti bolognese', 'ham sandwich', 'fish and chips'];
-}
+recipeRouter.post('/recipes', getRecipesBySeason)
 
-recipeRouter.get('./recipes', cb)
-
-export default recipeRouter;
+export { recipeRouter };

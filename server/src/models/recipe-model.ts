@@ -4,11 +4,29 @@ import {mongoose} from './db';
 
 const {Schema, model} = mongoose;
 
-type Ingredient = {
-  name: String,
-  measure: String,
-  number: Number,
+interface IngredientsInt {
+  name: string,
+  measure: string,
+  number: number
 }
+
+interface MethodInt {
+  heading: string,
+  body: string
+}
+
+interface RecipesInt {
+  name: string,
+  image: string,
+  mealType: string,
+  preparationTime: number,
+  difficulty: string,
+  servings: number,
+  description: string,
+  ingredients: IngredientsInt[],
+  method: MethodInt[]
+}
+
 
 const IngredientsSchema = new Schema({
   name: String,
@@ -33,6 +51,6 @@ const RecipesSchema = new Schema({
   method: [MethodSchema]
 })
 
-const Recipe = model('recipe', RecipesSchema)
+const Recipes = model('recipe', RecipesSchema)
 
-export {Recipe}
+export { Recipes, RecipesInt, IngredientsInt }

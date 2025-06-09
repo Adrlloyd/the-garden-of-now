@@ -1,11 +1,11 @@
 'use strict';
 
-import Router from 'koa-router'
+import Router from 'koa-router';
 
 import { getIngredientsBySeason } from '../controllers/ingredient-controller';
 
-const ingredientRouter = new Router()
+const ingredientRouter = new Router();
 
-ingredientRouter.get('/ingredients/:month', getIngredientsBySeason)
+ingredientRouter.get('/ingredients/:month', getIngredientsBySeason);
 
-export default ingredientRouter;
+export { ingredientRouter };
