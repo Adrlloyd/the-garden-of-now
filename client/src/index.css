@@ -2,8 +2,6 @@
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
-}
-
-:root {
-  
+  font-family: 'Montserrat', sans-serif;
+  color: rgb(25, 25, 25)
 }

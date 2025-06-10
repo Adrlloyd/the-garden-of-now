@@ -6,9 +6,10 @@ function NavBar({showBack, onBackClick}) {
     <div className="navbar-container">
       {showBack && (
         <button id="back-button" onClick={onBackClick}>
-          Go back
+          Back
         </button>
       )}
+      
     </div>
   )
 }

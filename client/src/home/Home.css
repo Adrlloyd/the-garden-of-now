@@ -5,5 +5,57 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  background-color: pink;
+  background-color: transparent;
+}
+
+#intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 20px;
+}
+
+#intro h1 {
+  text-align: center;
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 35px;
+  font-weight: 800;
+  margin: 20px;
+}
+
+#intro p {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 550;
+  padding: 5px;
+  border-radius: 15px;
+}
+
+#recipe-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin: 20px;
+}
+
+#recipe-button button {
+  border: 3px solid rgba(50,50,50,1);
+  border-radius: 15px;
+  height: 100px;
+  background-color: rgba(185,20,20,1);
+  color: rgba(250,250,250,1);
+  cursor: pointer;
+  text-align: center;
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+#recipe-button button:hover {
+  background-color: rgba(250,250,250,1);
+  color: rgba(50,50,50,1);
 }

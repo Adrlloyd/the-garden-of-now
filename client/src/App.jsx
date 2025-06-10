@@ -58,6 +58,7 @@ function App() {
         // onFavoritesClick={() => {}}
       />
       <Dashboard
+        month={month}
         view={view}
         setView={setView}
         seasonalIngredients={seasonalIngredients}

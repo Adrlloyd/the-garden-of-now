@@ -5,7 +5,7 @@ import Home from '../home/Home.jsx';
 import RecipeList from '../recipe-list/RecipeList.jsx';
 import RecipeDetail from '../recipe-detail/RecipeDetail.jsx';
 
-function Dashboard({view, setView, seasonalIngredients}) {
+function Dashboard({view, setView, seasonalIngredients, month}) {
 
   const [seasonalRecipes, setSeasonalRecipes] = useState([]);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
@@ -40,7 +40,7 @@ function Dashboard({view, setView, seasonalIngredients}) {
       case VIEWS.HOME:
         return (
           <Home
-            onButtonClick={() => {
+            fireButtonResponse={() => {
               fetchRecipes();
               setView(VIEWS.RECIPE_LIST)
             }}
@@ -51,8 +51,9 @@ function Dashboard({view, setView, seasonalIngredients}) {
       case VIEWS.RECIPE_LIST:
         return (
           <RecipeList
-            seasonalRecipes={seasonalRecipes}
-            onRecipeClick={(recipe) => {
+          month={month}  
+          seasonalRecipes={seasonalRecipes}
+            fireRecipeResponse={(recipe) => {
               setSelectedRecipe(recipe);
               setView(VIEWS.RECIPE_DETAIL);
             }}
