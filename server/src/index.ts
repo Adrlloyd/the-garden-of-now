@@ -6,8 +6,9 @@ import serve from 'koa-static';
 import cors from '@koa/cors';
 
 import { ingredientRouter } from './routers/ingredient-router';
-import { recipeRouter } from './routers/recipe-router'
-import { config } from './config'
+import { recipeRouter } from './routers/recipe-router';
+import { favouriteRouter } from './routers/favourite-router';
+import { config } from './config';
 
 const app = new Koa();
 const PORT = config.port
@@ -17,6 +18,7 @@ app.use(serve(config.path))
 app.use(bodyParser());
 app.use(ingredientRouter.routes());
 app.use(recipeRouter.routes());
+app.use(favouriteRouter.routes());
 
 app.listen(PORT);
 

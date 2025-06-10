@@ -22,6 +22,7 @@ const getIngredientsBySeason = async (ctx: Context) => {
     ctx.body = totalIngredientsCollated;
     ctx.status = 200;
   } catch (error) {
+    console.error(error);
     ctx.status = 500;
   }
 }

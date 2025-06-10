@@ -32,6 +32,7 @@ const getRecipesBySeason = async (ctx: Context) => {
     ctx.body = filteredRecipes;
     ctx.status = 200;
   } catch (error) {
+    console.error(error);
     ctx.status = 500;
   }
 }
