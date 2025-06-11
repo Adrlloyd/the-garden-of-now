@@ -1,15 +1,26 @@
 import './RecipeDetail.css';
+import { API_URL } from '../config.js';
 import IngredientCard from '../ingredient-card/IngredientCard.jsx';
 import MethodCard from '../method-card/MethodCard.jsx';
 
-const URL = import.meta.env.VITE_API_URL
+function RecipeDetail({isFavourite, selectedRecipe, addToFavourites, deleteFromFavourites}) {
 
-function RecipeDetail({selectedRecipe}) {
+  const updateFavourites = () => {
+    if (isFavourite) {
+      deleteFromFavourites(selectedRecipe);
+    } else {
+      addToFavourites(selectedRecipe);
+    }
+  };
 
   return (
     <div className="recipe-detail-container">
+      
       <div id="recipe-detail-card">
-        <img id="recipe-detail-image" src={`${URL}${selectedRecipe.image}`} alt={selectedRecipe.name}/>
+        <button id="favourites-toggle" onClick={updateFavourites}>
+          {isFavourite ? '-' : '+'}
+        </button>
+        <img id="recipe-detail-image" src={`${API_URL}${selectedRecipe.image}`} alt={selectedRecipe.name}/>
         <h2 id="recipe-detail-title">{selectedRecipe.name}</h2>
         <div className="recipe-data-container">
           <p id="recipe-detail-meal-type">{selectedRecipe.mealType}</p>

@@ -2,7 +2,7 @@ const VIEWS = {
   HOME: 'home',
   RECIPE_LIST: 'recipe-list',
   RECIPE_DETAIL: 'recipe-detail',
-  // FAVORITES_LIST: 'favorites-list',
+  FAVOURITES_LIST: 'favourites-list',
 };
 
 export { VIEWS }

@@ -59,3 +59,7 @@
   background-color: rgba(250,250,250,1);
   color: rgba(50,50,50,1);
 }
+
+#recipe-button button:active {
+  transform: scale(1.02);
+}

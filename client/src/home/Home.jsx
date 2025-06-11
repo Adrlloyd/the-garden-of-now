@@ -9,13 +9,13 @@ function Home({fireButtonResponse}) {
           WELCOME TO THE GARDEN<br/>OF NOW
         </h1>
         <p>
-          Life is full of big questions... like 'what's for dinner tonight?'.
+          Life is full of big questions. Questions like... 'what's for dinner tonight?'.
         </p>
         <p>
-          Eating green and supporting local farmers and growers is hard work. We've all been short on inspiration at times. Which is where we come in.
+          Eating green and supporting local farmers and growers is hard work when you're fresh out of mealtime inspo. Which is where we come in.
         </p>
         <p>
-          Click below for recipe ideas tailored to right here, right now.
+          Click below for recipe ideas tailored to the right here, right now.
         </p>
       </div>
       <div id="recipe-button">

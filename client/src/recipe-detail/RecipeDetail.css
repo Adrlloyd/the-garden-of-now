@@ -10,6 +10,7 @@
 }
 
 #recipe-detail-card {
+  position: relative;
   width: 90%;
   margin: 10px;
   padding: 10px;
@@ -21,6 +22,32 @@
   border: 3px solid rgba(50,50,50,1);
   border-radius: 15px;
 }
+
+#favourites-toggle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  border: 2px solid rgba(50,50,50,1);
+  border-radius: 15px;
+  color: rgba(250,250,250,1);
+  background-color: rgba(140,155,35,1);
+}
+
+#favourites-toggle:hover {
+  color: rgba(50,50,50,1);
+  background-color: rgba(250,250,250,1);
+}
+
+#favourites-toggle:active {
+  transform: scale(1.04);
+}
+
 
 #recipe-detail-image {
   width: 100%;

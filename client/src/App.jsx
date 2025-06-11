@@ -31,36 +31,41 @@ function App() {
   }, [month]);
 
   const [view, setView] = useState('home');
-  // Implement this logic when previousView necessary for Favorites screen: const [previousView, setPreviousView] = useState(null);
+  const [previousView, setPreviousView] = useState(null);
 
   function getNavbarConfig(view) {
     switch (view) {
       case VIEWS.HOME:
-        return { showBack: false, backTarget: null};
+        return { showBack: false, backTarget: null, showFavourites: true};
       case VIEWS.RECIPE_LIST:
-        return { showBack: true, backTarget: VIEWS.HOME};
+        return { showBack: true, backTarget: VIEWS.HOME, showFavourites: true};
       case VIEWS.RECIPE_DETAIL:
-        return { showBack: true, backTarget: VIEWS.RECIPE_LIST};
-      // Add Favorites logic in here when appropriate
+        return { showBack: true, backTarget: VIEWS.RECIPE_LIST, showFavourites: true};
+      case VIEWS.FAVOURITES_LIST:
+        return { showBack: true, backTarget: previousView || VIEWS.HOME, showFavourites: false };
       default:
-        return { showBack: false, backTarget: null, showFavorites: true };
+        return { showBack: false, backTarget: null, showFavourites: true };
     }
   }
 
-  const { showBack , backTarget } = getNavbarConfig(view);
+  const { showBack , backTarget, showFavourites } = getNavbarConfig(view);
 
   return (
     <div className="app-container">
       <NavBar
         showBack={showBack}
         onBackClick={() => {setView(backTarget)}}
-        // showFavourites={showFavourites}
-        // onFavoritesClick={() => {}}
+        showFavourites={showFavourites}
+        onFavouritesClick={() => {
+          setPreviousView(view);
+          setView(VIEWS.FAVOURITES_LIST)
+        }}
       />
       <Dashboard
         month={month}
         view={view}
         setView={setView}
+        setPreviousView={setPreviousView}
         seasonalIngredients={seasonalIngredients}
       />
     </div>

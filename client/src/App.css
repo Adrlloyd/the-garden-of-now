@@ -2,6 +2,10 @@
   width: 375px;
   height: 667px;
   background-color: white;
-  background-image: url(./assets/grid-background.png);
+  background-image: url(./assets/lines.png);
   background-size: contain;
+}
+
+:root {
+  align-content: center;
 }
