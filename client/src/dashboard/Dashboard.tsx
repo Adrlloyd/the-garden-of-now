@@ -45,7 +45,6 @@ function Dashboard({ view, setView, setPreviousView, seasonalIngredients, month 
   const [favouriteRecipes, setFavouriteRecipes] = useState<Recipe[]>([]);
 
   const fetchRecipes = async () => {
-    console.log("Fetching filtered favourites with:", seasonalIngredients);
     const url = `${API_URL}/recipes`;
     const payload = {
       seasonalIngredients: seasonalIngredients

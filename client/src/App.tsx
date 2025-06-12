@@ -16,12 +16,10 @@ function App() {
       const url = `http://127.0.0.1:3000/ingredients/${month}`;
       try {
         const response = await fetch(url);
-        console.log(response);
         if (!response.ok) {
           throw new Error(`Response status: ${response.status}`)
         };
         const body: string[] = await response.json();
-        console.log(body);
         setSeasonalIngredients(body);
       } catch (error: unknown) {
         if(error instanceof Error) {
