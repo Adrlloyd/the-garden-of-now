@@ -75,7 +75,6 @@ function Dashboard({ view, setView, setPreviousView, seasonalIngredients, month 
           seasonalIngredients: seasonalIngredients
         }
         try {
-          console.log("Sending favourites fetch with ingredients:", seasonalIngredients);
           const response = await fetch(url, {
             method: "POST",
             headers: {
@@ -210,4 +209,4 @@ function Dashboard({ view, setView, setPreviousView, seasonalIngredients, month 
   )
 }
 
-export default Dashboard
+export default Dashboard;
