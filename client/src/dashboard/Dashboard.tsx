@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './Dashboard.css';
-import { API_URL } from '../config.js';
+import { API_URL } from '../config';
 import { VIEWS } from '../view/views.js';
 import Home from '../home/Home';
 import RecipeList from '../recipe-list/RecipeList';
@@ -165,7 +165,7 @@ function Dashboard({ view, setView, setPreviousView, seasonalIngredients, month 
             favouriteRecipes={favouriteRecipes}
             addToFavourites={addToFavourites}
             deleteFromFavourites={deleteFromFavourites}
-            fireRecipeResponse={(recipe) => {
+            fireRecipeResponse={(recipe: Recipe) => {
               setSelectedRecipe(recipe);
               setView(VIEWS.RECIPE_DETAIL);
             }}
@@ -191,7 +191,7 @@ function Dashboard({ view, setView, setPreviousView, seasonalIngredients, month 
             favouriteRecipes={favouriteRecipes}
             addToFavourites={addToFavourites}
             deleteFromFavourites={deleteFromFavourites}
-            fireRecipeResponse={(recipe) => {
+            fireRecipeResponse={(recipe: Recipe) => {
               setSelectedRecipe(recipe);
               setPreviousView(view);
               setView(VIEWS.RECIPE_DETAIL);

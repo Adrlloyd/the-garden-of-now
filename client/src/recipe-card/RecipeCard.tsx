@@ -1,9 +1,37 @@
 import './RecipeCard.css';
-import { API_URL } from '../config.js';
+import { API_URL } from '../config';
 
-function RecipeCard({recipe, isFavourite, addToFavourites, deleteFromFavourites, fireRecipeResponse}) {
+type Recipe = {
+  _id: string;
+  name: string;
+  image: string;
+  mealType: string;
+  preparationTime: number;
+  difficulty: string;
+  servings: number;
+  description: string;
+  ingredients: {
+    name: string;
+    measure: string;
+    number: number;
+  }[];
+  method: {
+    heading: string;
+    body: string;
+  }[];
+};
 
-  const updateFavourites = (event) => {
+type RecipeCardProps = {
+  recipe: Recipe;
+  isFavourite: boolean;
+  addToFavourites: (recipe: Recipe) => void;
+  deleteFromFavourites: (recipe: Recipe) => void;
+  fireRecipeResponse: (recipe: Recipe) => void;
+};
+
+function RecipeCard({recipe, isFavourite, addToFavourites, deleteFromFavourites, fireRecipeResponse}: RecipeCardProps) {
+
+  const updateFavourites = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     if (isFavourite) {
       deleteFromFavourites(recipe);
@@ -35,4 +63,4 @@ function RecipeCard({recipe, isFavourite, addToFavourites, deleteFromFavourites,
   )
 }
 
-export default RecipeCard
+export default RecipeCard;

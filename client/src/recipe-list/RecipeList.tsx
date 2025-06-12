@@ -1,8 +1,44 @@
 import './RecipeList.css';
 import RecipeCard from '../recipe-card/RecipeCard';
 
-function RecipeList({title, recipes, favouriteRecipes, addToFavourites, deleteFromFavourites, fireRecipeResponse}) {
-  
+type Recipe = {
+  _id: string;
+  name: string;
+  image: string;
+  mealType: string;
+  preparationTime: number;
+  difficulty: string;
+  servings: number;
+  description: string;
+  ingredients: {
+    name: string;
+    measure: string;
+    number: number;
+  }[];
+  method: {
+    heading: string;
+    body: string;
+  }[];
+};
+
+type RecipeListProps = {
+  title: string;
+  recipes: Recipe[];
+  favouriteRecipes: Recipe[];
+  addToFavourites: (recipe: Recipe) => void;
+  deleteFromFavourites: (recipe: Recipe) => void;
+  fireRecipeResponse: (recipe: Recipe) => void;
+};
+
+function RecipeList({
+  title,
+  recipes,
+  favouriteRecipes,
+  addToFavourites,
+  deleteFromFavourites,
+  fireRecipeResponse
+}: RecipeListProps) {
+
   return (
     <div className="recipe-list-container">
       <div id="recipe-list-title">
@@ -17,7 +53,7 @@ function RecipeList({title, recipes, favouriteRecipes, addToFavourites, deleteFr
           recipes.length === 0
             ? (<p className="empty-message">
                 {title === 'favourite'
-                  ? "You haven’t added any favourite recipes yet."
+                  ? "You haven't added any favourite recipes yet."
                   : `No seasonal recipes found for ${title}.`
                 }
               </p>)
@@ -34,7 +70,7 @@ function RecipeList({title, recipes, favouriteRecipes, addToFavourites, deleteFr
         }
       </div>
     </div>
-  )
+  );
 }
 
-export default RecipeList
+export default RecipeList;

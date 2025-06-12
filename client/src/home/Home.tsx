@@ -31,8 +31,3 @@ function Home({ fireButtonResponse }: HomeProps) {
 }
 
 export default Home;
-
-
-
-
-
