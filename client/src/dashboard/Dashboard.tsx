@@ -1,15 +1,48 @@
 import { useState, useEffect } from 'react';
 import './Dashboard.css';
-import { API_URL } from '../config.js';
-import { VIEWS } from '../view/views.js';
-import Home from '../home/Home.jsx';
-import RecipeList from '../recipe-list/RecipeList.jsx';
-import RecipeDetail from '../recipe-detail/RecipeDetail.jsx';
+import { API_URL } from '../config';
+import { VIEWS } from '../view/views';
+import Home from '../home/Home';
+import RecipeList from '../recipe-list/RecipeList';
+import RecipeDetail from '../recipe-detail/RecipeDetail';
 
-function Dashboard({view, setView, setPreviousView, seasonalIngredients, month}) {
+type Ingredient = {
+  name: string;
+  measure: string;
+  number: number;
+};
 
-  const [seasonalRecipes, setSeasonalRecipes] = useState([]);
-  const [selectedRecipe, setSelectedRecipe] = useState(null);
+type MethodStep = {
+  heading: string;
+  body: string;
+};
+
+type Recipe = {
+  _id: string;
+  name: string;
+  image: string;
+  mealType: string;
+  preparationTime: number;
+  difficulty: string;
+  servings: number;
+  description: string;
+  ingredients: Ingredient[];
+  method: MethodStep[];
+};
+
+type DashboardProps = {
+  view: string;
+  setView: (view: string) => void;
+  setPreviousView: (view: string) => void;
+  seasonalIngredients: string[];
+  month: string;
+};
+
+function Dashboard({ view, setView, setPreviousView, seasonalIngredients, month }: DashboardProps) {
+
+  const [seasonalRecipes, setSeasonalRecipes] = useState<Recipe[]>([]);
+  const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
+  const [favouriteRecipes, setFavouriteRecipes] = useState<Recipe[]>([]);
 
   const fetchRecipes = async () => {
     console.log("Fetching filtered favourites with:", seasonalIngredients);
@@ -28,14 +61,12 @@ function Dashboard({view, setView, setPreviousView, seasonalIngredients, month})
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`)
       };
-      const body = await response.json();
+      const body: Recipe[] = await response.json();
       setSeasonalRecipes(body);
     } catch (error) {
       console.log(error);
     }
   };
-
-  const [favouriteRecipes, setFavouriteRecipes] = useState([]);
 
   useEffect(() => {
     if (view === VIEWS.FAVOURITES_LIST) {
@@ -57,7 +88,7 @@ function Dashboard({view, setView, setPreviousView, seasonalIngredients, month})
             throw new Error(`Response status: ${response.status}`)
           };
           console.log("Response status:", response.status);
-          const body = await response.json();
+          const body: Recipe[] = await response.json();
           setFavouriteRecipes(body);
           console.log("Fetched favourites:", body);
         } catch (error) {
@@ -70,9 +101,9 @@ function Dashboard({view, setView, setPreviousView, seasonalIngredients, month})
     }
   }, [view, seasonalIngredients]);
 
-  const addToFavourites = async (recipe) => {
+  const addToFavourites = async (recipe: Recipe) => {
     const exists = favouriteRecipes.some((existingRecipe) => {
-      return existingRecipe._id === recipe._id
+      return existingRecipe._id === recipe._id;
     });
     if (exists) {
       alert("This recipe is already in your favourites.");
@@ -88,16 +119,16 @@ function Dashboard({view, setView, setPreviousView, seasonalIngredients, month})
         body: JSON.stringify(recipe)
       });
       if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`)
-      };
-      const body = await response.json();
+        throw new Error(`Response status: ${response.status}`);
+      }
+      const body: Recipe = await response.json();
       setFavouriteRecipes([...favouriteRecipes, body]);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const deleteFromFavourites = async (recipe) => {
+  const deleteFromFavourites = async (recipe: Recipe) => {
     const url = `${API_URL}/favourite/${recipe._id}`;
     try {
       const response = await fetch(url, {
@@ -134,7 +165,7 @@ function Dashboard({view, setView, setPreviousView, seasonalIngredients, month})
             favouriteRecipes={favouriteRecipes}
             addToFavourites={addToFavourites}
             deleteFromFavourites={deleteFromFavourites}
-            fireRecipeResponse={(recipe) => {
+            fireRecipeResponse={(recipe: Recipe) => {
               setSelectedRecipe(recipe);
               setView(VIEWS.RECIPE_DETAIL);
             }}
@@ -142,6 +173,7 @@ function Dashboard({view, setView, setPreviousView, seasonalIngredients, month})
         );
 
       case VIEWS.RECIPE_DETAIL:
+        if (!selectedRecipe) return <div>No recipe selected</div>;
         return (
           <RecipeDetail
             isFavourite={(favouriteRecipes || []).some(existingRecipe => existingRecipe._id === selectedRecipe._id)}
@@ -159,7 +191,7 @@ function Dashboard({view, setView, setPreviousView, seasonalIngredients, month})
             favouriteRecipes={favouriteRecipes}
             addToFavourites={addToFavourites}
             deleteFromFavourites={deleteFromFavourites}
-            fireRecipeResponse={(recipe) => {
+            fireRecipeResponse={(recipe: Recipe) => {
               setSelectedRecipe(recipe);
               setPreviousView(view);
               setView(VIEWS.RECIPE_DETAIL);
@@ -180,8 +212,3 @@ function Dashboard({view, setView, setPreviousView, seasonalIngredients, month})
 }
 
 export default Dashboard
-
-
-
-
-
