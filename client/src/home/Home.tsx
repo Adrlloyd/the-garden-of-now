@@ -1,12 +1,15 @@
 import './Home.css';
 
-function Home({fireButtonResponse}) {
+type HomeProps = {
+  fireButtonResponse: () => void;
+};
 
+function Home({ fireButtonResponse }: HomeProps) {
   return (
     <div className="home-container">
       <div id="intro">
         <h1>
-          WELCOME TO THE GARDEN<br/>OF NOW
+          WELCOME TO THE GARDEN<br />OF NOW
         </h1>
         <p>
           Life is full of big questions. Questions like... 'what's for dinner tonight?'.
@@ -19,15 +22,15 @@ function Home({fireButtonResponse}) {
         </p>
       </div>
       <div id="recipe-button">
-        <button  onClick={fireButtonResponse}>
-            TICKLE MY TASTEBUDS
+        <button onClick={fireButtonResponse}>
+          TICKLE MY TASTEBUDS
         </button>
       </div>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
 
 
 
