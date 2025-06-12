@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './Dashboard.css';
 import { API_URL } from '../config';
-import { VIEWS } from '../view/views.js';
+import { VIEWS } from '../view/views';
 import Home from '../home/Home';
 import RecipeList from '../recipe-list/RecipeList';
 import RecipeDetail from '../recipe-detail/RecipeDetail';

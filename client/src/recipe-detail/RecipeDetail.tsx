@@ -1,9 +1,36 @@
 import './RecipeDetail.css';
-import { API_URL } from '../config.js';
-import IngredientCard from '../ingredient-card/IngredientCard.jsx';
-import MethodCard from '../method-card/MethodCard.jsx';
+import { API_URL } from '../config';
+import IngredientCard from '../ingredient-card/IngredientCard';
+import MethodCard from '../method-card/MethodCard';
 
-function RecipeDetail({isFavourite, selectedRecipe, addToFavourites, deleteFromFavourites}) {
+type Recipe = {
+  _id: string;
+  name: string;
+  image: string;
+  mealType: string;
+  preparationTime: number;
+  difficulty: string;
+  servings: number;
+  description: string;
+  ingredients: {
+    name: string;
+    measure: string;
+    number: number;
+  }[];
+  method: {
+    heading: string;
+    body: string;
+  }[];
+};
+
+type RecipeDetailProps = {
+  isFavourite: boolean;
+  selectedRecipe: Recipe;
+  addToFavourites: (recipe: Recipe) => void;
+  deleteFromFavourites: (recipe: Recipe) => void;
+};
+
+function RecipeDetail({isFavourite, selectedRecipe, addToFavourites, deleteFromFavourites}: RecipeDetailProps) {
 
   const updateFavourites = () => {
     if (isFavourite) {
@@ -44,4 +71,4 @@ function RecipeDetail({isFavourite, selectedRecipe, addToFavourites, deleteFromF
   )
 }
 
-export default RecipeDetail
+export default RecipeDetail;
