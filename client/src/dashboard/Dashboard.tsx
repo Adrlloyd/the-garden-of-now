@@ -1,34 +1,16 @@
 import { useState, useEffect } from 'react';
 import './Dashboard.css';
-import { API_URL } from '../config';
 import { VIEWS } from '../view/views';
 import Home from '../home/Home';
 import RecipeList from '../recipe-list/RecipeList';
 import RecipeDetail from '../recipe-detail/RecipeDetail';
-
-type Ingredient = {
-  name: string;
-  measure: string;
-  number: number;
-};
-
-type MethodStep = {
-  heading: string;
-  body: string;
-};
-
-type Recipe = {
-  _id: string;
-  name: string;
-  image: string;
-  mealType: string;
-  preparationTime: number;
-  difficulty: string;
-  servings: number;
-  description: string;
-  ingredients: Ingredient[];
-  method: MethodStep[];
-};
+import {
+  fetchRecipes,
+  fetchFavourites,
+  addFavourite,
+  deleteFavourite,
+  Recipe //this would be called from a Type file once its in place.
+} from '../services/recipeService';
 
 type DashboardProps = {
   view: string;
@@ -39,89 +21,43 @@ type DashboardProps = {
 };
 
 function Dashboard({ view, setView, setPreviousView, seasonalIngredients, month }: DashboardProps) {
-
   const [seasonalRecipes, setSeasonalRecipes] = useState<Recipe[]>([]);
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
   const [favouriteRecipes, setFavouriteRecipes] = useState<Recipe[]>([]);
 
-  const fetchRecipes = async () => {
-    console.log("Fetching filtered favourites with:", seasonalIngredients);
-    const url = `${API_URL}/recipes`;
-    const payload = {
-      seasonalIngredients: seasonalIngredients
-    }
+  const getRecipes = async () => {
     try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(payload)
-      });
-      if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`)
-      };
-      const body: Recipe[] = await response.json();
+      const body = await fetchRecipes(seasonalIngredients);
       setSeasonalRecipes(body);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
   useEffect(() => {
-    if (view === VIEWS.FAVOURITES_LIST) {
-      const fetchFavourites = async () => {
-        const url = `${API_URL}/favourites`;
-        const payload = {
-          seasonalIngredients: seasonalIngredients
-        }
-        try {
-          console.log("Sending favourites fetch with ingredients:", seasonalIngredients);
-          const response = await fetch(url, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(payload)
-          });
-          if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`)
-          };
-          console.log("Response status:", response.status);
-          const body: Recipe[] = await response.json();
-          setFavouriteRecipes(body);
-          console.log("Fetched favourites:", body);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-      if (view === VIEWS.FAVOURITES_LIST && seasonalIngredients.length > 0) {
-        fetchFavourites();
+    const getFavourites = async () => {
+      try {
+        const body = await fetchFavourites(seasonalIngredients);
+        setFavouriteRecipes(body);
+      } catch (error) {
+        console.error(error);
       }
+    };
+
+    if (view === VIEWS.FAVOURITES_LIST && seasonalIngredients.length > 0) {
+      getFavourites();
     }
   }, [view, seasonalIngredients]);
 
   const addToFavourites = async (recipe: Recipe) => {
-    const exists = favouriteRecipes.some((existingRecipe) => {
-      return existingRecipe._id === recipe._id;
-    });
+    const exists = favouriteRecipes.some(existing => existing._id === recipe._id);
     if (exists) {
       alert("This recipe is already in your favourites.");
       return;
     }
-    const url = `${API_URL}/favourite`;
+
     try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(recipe)
-      });
-      if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`);
-      }
-      const body: Recipe = await response.json();
+      const body = await addFavourite(recipe);
       setFavouriteRecipes([...favouriteRecipes, body]);
     } catch (error) {
       console.error(error);
@@ -129,17 +65,9 @@ function Dashboard({ view, setView, setPreviousView, seasonalIngredients, month 
   };
 
   const deleteFromFavourites = async (recipe: Recipe) => {
-    const url = `${API_URL}/favourite/${recipe._id}`;
     try {
-      const response = await fetch(url, {
-        method: "DELETE"
-      });
-      if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`);
-      }
-      setFavouriteRecipes(favouriteRecipes.filter((existingRecipe) => {
-        return existingRecipe._id !== recipe._id
-      }));
+      await deleteFavourite(recipe._id);
+      setFavouriteRecipes(favouriteRecipes.filter(r => r._id !== recipe._id));
     } catch (error) {
       console.error(error);
     }
@@ -151,8 +79,8 @@ function Dashboard({ view, setView, setPreviousView, seasonalIngredients, month 
         return (
           <Home
             fireButtonResponse={() => {
-              fetchRecipes();
-              setView(VIEWS.RECIPE_LIST)
+              getRecipes();
+              setView(VIEWS.RECIPE_LIST);
             }}
           />
         );
@@ -160,7 +88,7 @@ function Dashboard({ view, setView, setPreviousView, seasonalIngredients, month 
       case VIEWS.RECIPE_LIST:
         return (
           <RecipeList
-            title={month}  
+            title={month}
             recipes={seasonalRecipes}
             favouriteRecipes={favouriteRecipes}
             addToFavourites={addToFavourites}
@@ -176,7 +104,7 @@ function Dashboard({ view, setView, setPreviousView, seasonalIngredients, month 
         if (!selectedRecipe) return <div>No recipe selected</div>;
         return (
           <RecipeDetail
-            isFavourite={(favouriteRecipes || []).some(existingRecipe => existingRecipe._id === selectedRecipe._id)}
+            isFavourite={favouriteRecipes.some(r => r._id === selectedRecipe._id)}
             selectedRecipe={selectedRecipe}
             addToFavourites={addToFavourites}
             deleteFromFavourites={deleteFromFavourites}
@@ -186,7 +114,7 @@ function Dashboard({ view, setView, setPreviousView, seasonalIngredients, month 
       case VIEWS.FAVOURITES_LIST:
         return (
           <RecipeList
-            title={'favourite'}
+            title="favourite"
             recipes={favouriteRecipes}
             favouriteRecipes={favouriteRecipes}
             addToFavourites={addToFavourites}
@@ -208,7 +136,7 @@ function Dashboard({ view, setView, setPreviousView, seasonalIngredients, month 
     <div className="dashboard-container">
       {renderDashboardContent()}
     </div>
-  )
+  );
 }
 
-export default Dashboard
+export default Dashboard;

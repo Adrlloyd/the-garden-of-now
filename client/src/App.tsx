@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import { VIEWS } from './view/views';
 import NavBar from './navbar/NavBar';
-import Dashboard from './dashboard/Dashboard.jsx';
+import Dashboard from './dashboard/Dashboard';
+import { fetchSeasonalIngredients } from './services/ingredientService';
 
 function App() {
 
@@ -12,46 +13,38 @@ function App() {
   const [seasonalIngredients, setSeasonalIngredients] = useState<string[]>([]);
   
   useEffect(() => {
-    const fetchIngredients = async () => {
-      const url = `http://127.0.0.1:3000/ingredients/${month}`;
-      try {
-        const response = await fetch(url);
-        console.log(response);
-        if (!response.ok) {
-          throw new Error(`Response status: ${response.status}`)
-        };
-        const body: string[] = await response.json();
-        console.log(body);
-        setSeasonalIngredients(body);
-      } catch (error: unknown) {
-        if(error instanceof Error) {
-          console.log(error);
-        }
-        
-      }
-    };
-    fetchIngredients();
-  }, [month]);
+  fetchSeasonalIngredients(month)
+    .then(setSeasonalIngredients)
+    .catch((error) => {
+      console.error('Failed to fetch seasonal ingredients in App.tsx:', error);
+    });
+}, [month]);
 
-  const [view, setView] = useState<string>('home');
+  const [view, setView] = useState<string>(VIEWS.HOME);
   const [previousView, setPreviousView] = useState<string | null>(null);
 
-  function getNavbarConfig(view: string) {
-    switch (view) {
-      case VIEWS.HOME:
-        return { showBack: false, backTarget: null, showFavourites: true};
-      case VIEWS.RECIPE_LIST:
-        return { showBack: true, backTarget: VIEWS.HOME, showFavourites: true};
-      case VIEWS.RECIPE_DETAIL:
-        return { showBack: true, backTarget: VIEWS.RECIPE_LIST, showFavourites: true};
-      case VIEWS.FAVOURITES_LIST:
-        return { showBack: true, backTarget: previousView || VIEWS.HOME, showFavourites: false };
-      default:
-        return { showBack: false, backTarget: null, showFavourites: true };
-    }
-  }
+  type NavbarConfig = {
+  showBack: boolean;
+  backTarget: string | null;
+  showFavourites: boolean;
+};
 
-  const { showBack , backTarget, showFavourites } = getNavbarConfig(view);
+function getNavbarConfig(view: string, previousView: string | null): NavbarConfig {
+  switch (view) {
+    case VIEWS.HOME:
+      return { showBack: false, backTarget: null, showFavourites: true };
+    case VIEWS.RECIPE_LIST:
+      return { showBack: true, backTarget: VIEWS.HOME, showFavourites: true };
+    case VIEWS.RECIPE_DETAIL:
+      return { showBack: true, backTarget: VIEWS.RECIPE_LIST, showFavourites: true };
+    case VIEWS.FAVOURITES_LIST:
+      return { showBack: true, backTarget: previousView || VIEWS.HOME, showFavourites: false };
+    default:
+      return { showBack: false, backTarget: null, showFavourites: true };
+  }
+}
+
+  const { showBack, backTarget, showFavourites } = getNavbarConfig(view, previousView);
 
   return (
     <div className="app-container">
@@ -75,4 +68,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

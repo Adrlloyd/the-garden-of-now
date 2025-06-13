@@ -18,7 +18,6 @@ const getFavouritesBySeason = async (ctx: Context) => {
   const standardizedIngredients = seasonalIngredients.map(standardizeIngredient);
   try {
     const allFavourites = await Favourites.find();
-    console.log("Filtering favourites for:", seasonalIngredients);
     const filteredRecipes = allFavourites.filter((recipe) => {
       return recipe.ingredients.every((ingredient) => {
         const ingredientName = standardizeIngredient(ingredient.name as string);
