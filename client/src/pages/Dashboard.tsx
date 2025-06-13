@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
-import './Dashboard.css';
+import '../styles/Dashboard.css';
 import { VIEWS } from '../view/views';
-import Home from '../home/Home';
-import RecipeList from '../recipe-list/RecipeList';
-import RecipeDetail from '../recipe-detail/RecipeDetail';
+import Home from './Home';
+import RecipeList from './RecipeList';
+import RecipeDetail from './RecipeDetail';
+import type { Recipe } from '../types/recipe';
 import {
   fetchRecipes,
   fetchFavourites,
   addFavourite,
   deleteFavourite,
-  Recipe //this would be called from a Type file once its in place.
 } from '../services/recipeService';
 
 import type { DashboardProps } from '../types/dashboard';
@@ -32,7 +32,6 @@ function Dashboard({ view, setView, setPreviousView, seasonalIngredients, month 
     const getFavourites = async () => {
       try {
         const body = await fetchFavourites(seasonalIngredients);
-        console.log('Fetched favourites:', body);
         setFavouriteRecipes(body);
       } catch (error) {
         console.error(error);
@@ -69,9 +68,6 @@ function Dashboard({ view, setView, setPreviousView, seasonalIngredients, month 
   };
 
   const renderDashboardContent = () => {
-    console.log('Current view:', view);
-    console.log('selectedRecipe:', selectedRecipe);
-
     switch (view) {
       case VIEWS.HOME:
         return (
