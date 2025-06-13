@@ -4,9 +4,6 @@ import IngredientCard from '../components/IngredientCard';
 import MethodCard from '../components/MethodCard';
 import { RecipeDetailProps } from '../types/recipe';
 
-
-
-
 function RecipeDetail({ isFavourite, selectedRecipe, addToFavourites, deleteFromFavourites }: RecipeDetailProps) {
 
   const updateFavourites = () => {

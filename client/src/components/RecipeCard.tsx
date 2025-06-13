@@ -1,25 +1,6 @@
 import '../styles/RecipeCard.css';
 import { API_URL } from '../config';
-
-type Recipe = {
-  _id: string;
-  name: string;
-  image: string;
-  mealType: string;
-  preparationTime: number;
-  difficulty: string;
-  servings: number;
-  description: string;
-  ingredients: {
-    name: string;
-    measure: string;
-    number: number;
-  }[];
-  method: {
-    heading: string;
-    body: string;
-  }[];
-};
+import type { Recipe } from '../types/recipe';
 
 type RecipeCardProps = {
   recipe: Recipe;
