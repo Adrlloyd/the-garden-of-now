@@ -12,13 +12,7 @@ import {
   Recipe //this would be called from a Type file once its in place.
 } from '../services/recipeService';
 
-type DashboardProps = {
-  view: string;
-  setView: (view: string) => void;
-  setPreviousView: (view: string) => void;
-  seasonalIngredients: string[];
-  month: string;
-};
+import type { DashboardProps } from '../types/dashboard';
 
 function Dashboard({ view, setView, setPreviousView, seasonalIngredients, month }: DashboardProps) {
   const [seasonalRecipes, setSeasonalRecipes] = useState<Recipe[]>([]);
@@ -38,6 +32,7 @@ function Dashboard({ view, setView, setPreviousView, seasonalIngredients, month 
     const getFavourites = async () => {
       try {
         const body = await fetchFavourites(seasonalIngredients);
+        console.log('Fetched favourites:', body);
         setFavouriteRecipes(body);
       } catch (error) {
         console.error(error);
@@ -74,6 +69,9 @@ function Dashboard({ view, setView, setPreviousView, seasonalIngredients, month 
   };
 
   const renderDashboardContent = () => {
+    console.log('Current view:', view);
+    console.log('selectedRecipe:', selectedRecipe);
+
     switch (view) {
       case VIEWS.HOME:
         return (
