@@ -1,4 +1,4 @@
-import './MethodCard.css';
+import '../styles/MethodCard.css';
 import type {MethodStep } from '../types/method';
 
 

@@ -1,5 +1,5 @@
-import './RecipeList.css';
-import RecipeCard from '../recipe-card/RecipeCard';
+import '../styles/RecipeList.css';
+import RecipeCard from '../components/RecipeCard';
 
 type Recipe = {
   _id: string;
@@ -52,21 +52,21 @@ function RecipeList({
         {
           recipes.length === 0
             ? (<p className="empty-message">
-                {title === 'favourite'
-                  ? "You haven't added any favourite recipes yet."
-                  : `No seasonal recipes found for ${title}.`
-                }
-              </p>)
+              {title === 'favourite'
+                ? "You haven't added any favourite recipes yet."
+                : `No seasonal recipes found for ${title}.`
+              }
+            </p>)
             : (recipes.map((recipe, index) => (
-                <RecipeCard
-                  key={index}
-                  recipe={recipe}
-                  isFavourite={(favouriteRecipes || []).some(existingRecipe => existingRecipe._id === recipe._id)}
-                  addToFavourites={addToFavourites}
-                  deleteFromFavourites={deleteFromFavourites}
-                  fireRecipeResponse={fireRecipeResponse}
-                />
-              )))
+              <RecipeCard
+                key={index}
+                recipe={recipe}
+                isFavourite={(favouriteRecipes || []).some(existingRecipe => existingRecipe._id === recipe._id)}
+                addToFavourites={addToFavourites}
+                deleteFromFavourites={deleteFromFavourites}
+                fireRecipeResponse={fireRecipeResponse}
+              />
+            )))
         }
       </div>
     </div>

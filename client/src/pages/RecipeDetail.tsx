@@ -1,7 +1,7 @@
-import './RecipeDetail.css';
+import '../styles/RecipeDetail.css';
 import { API_URL } from '../config';
-import IngredientCard from '../ingredient-card/IngredientCard';
-import MethodCard from '../method-card/MethodCard';
+import IngredientCard from '../components/IngredientCard';
+import MethodCard from '../components/MethodCard';
 import { RecipeDetailProps } from '../types/recipe';
 
 

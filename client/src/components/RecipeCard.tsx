@@ -1,4 +1,4 @@
-import './RecipeCard.css';
+import '../styles/RecipeCard.css';
 import { API_URL } from '../config';
 
 type Recipe = {

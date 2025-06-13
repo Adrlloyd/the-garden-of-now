@@ -1,4 +1,4 @@
-  import './NavBar.css';
+  import '../styles/NavBar.css';
   import type { NavbarProps } from '../types/navBar';
   
   function NavBar({showBack, onBackClick, showFavourites, onFavouritesClick}: NavbarProps) {

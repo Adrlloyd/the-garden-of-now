@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import './Dashboard.css';
+import '../styles/Dashboard.css';
 import { VIEWS } from '../view/views';
-import Home from '../home/Home';
-import RecipeList from '../recipe-list/RecipeList';
-import RecipeDetail from '../recipe-detail/RecipeDetail';
+import Home from './Home';
+import RecipeList from './RecipeList';
+import RecipeDetail from './RecipeDetail';
 import {
   fetchRecipes,
   fetchFavourites,
