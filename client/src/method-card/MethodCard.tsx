@@ -1,9 +1,6 @@
 import './MethodCard.css';
+import type {MethodStep } from '../types/method';
 
-type MethodStep = {
-  heading: string;
-  body: string;
-};
 
 type MethodCardProps = {
   step: MethodStep;
