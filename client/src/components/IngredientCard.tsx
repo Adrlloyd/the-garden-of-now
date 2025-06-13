@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import './IngredientCard.css';
+import '../styles/IngredientCard.css';
 import type { Ingredient } from '../types/ingredients';
 
 

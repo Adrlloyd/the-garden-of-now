@@ -1,4 +1,4 @@
-import './Home.css';
+import '../styles/Home.css';
 
 type HomeProps = {
   fireButtonResponse: () => void;
