@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import './IngredientCard.css';
-import type { Ingredient } from '../types/Ingredients';
+import type { Ingredient } from '../types/ingredients';
 
 
 
