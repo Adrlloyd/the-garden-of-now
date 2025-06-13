@@ -1,10 +1,8 @@
+/// <reference types="react" />
 import './IngredientCard.css';
+import type { Ingredient } from '../types/ingredients';
 
-type Ingredient = {
-  name: string;
-  measure: string;
-  number: number;
-};
+
 
 type IngredientCardProps = {
   ingredient: Ingredient;

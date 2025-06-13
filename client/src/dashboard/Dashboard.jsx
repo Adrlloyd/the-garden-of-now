@@ -180,8 +180,3 @@ function Dashboard({view, setView, setPreviousView, seasonalIngredients, month})
 }
 
 export default Dashboard
-
-
-
-
-
