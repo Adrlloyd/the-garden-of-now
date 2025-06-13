@@ -3,7 +3,9 @@ import { createRoot } from 'react-dom/client'
 import './styles/index.css'
 import App from './App.jsx'
 
-createRoot(document.getElementById('root')).render(
+const root = document.getElementById('root') as HTMLElement;
+
+createRoot(root).render(
   <StrictMode>
     <div className="wrapper">
       <App />
