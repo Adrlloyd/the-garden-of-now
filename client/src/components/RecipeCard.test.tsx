@@ -104,3 +104,22 @@ test('calls deleteFromFavorites when - btn is clicked', ()=> {
  expect(deleteFromFavouritesMock).toHaveBeenCalledWith(mockRecipe);
 
 })
+
+// Test that clicking on the recipe card container calls fireRecipeResponse
+
+test('calls fireRecipeResponse when the card is clicked', () => {
+  const fireRecipeResponseMock = jest.fn()
+
+  render(
+  <RecipeCard
+  recipe={mockRecipe}
+  isFavourite={true}
+  addToFavourites= {jest.fn()}
+  deleteFromFavourites={jest.fn()}
+  fireRecipeResponse={fireRecipeResponseMock} 
+  />
+)
+const cardContainer = screen.getByTestId('recipe-card'); //A data-testid="recipe-card" was added to the component RecipeCard.tsx
+ fireEvent.click(cardContainer);
+ expect(fireRecipeResponseMock).toHaveBeenCalledWith(mockRecipe);
+})
