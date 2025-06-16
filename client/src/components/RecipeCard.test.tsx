@@ -77,3 +77,30 @@ test('calls addToFavourites when + btn is clicked', ()=> {
  expect(addToFavouritesMock).toHaveBeenCalledWith(mockRecipe);
 
 })
+
+// Check that clicking the - button calls the deleteFromFavourites function. 
+
+test('calls deleteFromFavorites when - btn is clicked', ()=> {
+  //creat mocj fn 
+  const deleteFromFavouritesMock = jest.fn();
+
+  render(
+  <RecipeCard
+  recipe={mockRecipe}
+  isFavourite={true}
+  addToFavourites= {jest.fn()}
+  deleteFromFavourites={deleteFromFavouritesMock}
+  fireRecipeResponse={jest.fn()} 
+  />
+)
+ const btn = screen.getByRole('button', {name: '-'});
+
+ // simulate user click btn
+
+ fireEvent.click(btn);
+
+ 
+ expect(deleteFromFavouritesMock).toHaveBeenCalledTimes(1);
+ expect(deleteFromFavouritesMock).toHaveBeenCalledWith(mockRecipe);
+
+})
