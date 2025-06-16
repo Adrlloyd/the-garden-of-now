@@ -47,6 +47,8 @@ render(
 )
 const element = screen.getByText(/Zucchini Tart/i) as HTMLElement;
 expect(element).toBeInTheDocument();
+expect(screen.getByText(/Prep Time: 30 mins/i)).toBeInTheDocument();
+expect(screen.getByText(/lunch/i)).toBeInTheDocument();
 
 
 });
