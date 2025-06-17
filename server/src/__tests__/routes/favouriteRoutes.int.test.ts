@@ -8,7 +8,7 @@ jest.mock('../../models/favouriteModel');
 
 const server = http.createServer(app.callback());
 
-describe('POST /favourites', () => {
+describe('POST /favourite', () => {
   it('should return 409 if the favourite already exists', async () => {
     (Favourites.findOne as jest.Mock).mockResolvedValue({ name: 'Spaghetti Bolognese' });
 
@@ -46,6 +46,53 @@ describe('POST /favourites', () => {
       name: 'Mushroom Risotto',
       ingredients: [{ name: 'mushroom' }],
       method: []
+    });
+  });
+});
+
+describe('POST /favourites', () => {
+  it('should return 200 with matching favourite recipes', async () => {
+    const fakeData = [
+      {
+        ingredients: [{ name: 'carrot' }, { name: 'tomato' }]
+      },
+      {
+        ingredients: [{ name: 'onion' }]
+      }
+    ];
+
+    (Favourites.find as jest.Mock).mockResolvedValue(fakeData);
+
+    const response = await request(server)
+      .post('/favourites')
+      .send({
+        seasonalIngredients: ['carrots', 'tomatoes']
+      });
+
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual([
+      {
+        ingredients: [{ name: 'carrot' }, { name: 'tomato' }]
+      }
+    ]);
+  });
+
+  it('should return 404 when no matches are found', async () => {
+    (Favourites.find as jest.Mock).mockResolvedValue([
+      {
+        ingredients: [{ name: 'beef' }]
+      }
+    ]);
+
+    const response = await request(server)
+      .post('/favourites')
+      .send({
+        seasonalIngredients: ['kale']
+      });
+
+    expect(response.status).toBe(404);
+    expect(response.body).toEqual({
+      error: 'The database does not contain any favourite recipes'
     });
   });
 });
