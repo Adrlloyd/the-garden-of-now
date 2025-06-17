@@ -22,7 +22,7 @@ function RecipeCard({recipe, isFavourite, addToFavourites, deleteFromFavourites,
   };
 
   return (
-    <div className="recipe-card-container" onClick={() => {fireRecipeResponse(recipe)}}>
+    <div className="recipe-card-container" data-testid="recipe-card"  onClick={() => {fireRecipeResponse(recipe)}}>
       <button id="favourites-card-toggle" onClick={updateFavourites}>
         {isFavourite ? '-' : '+'}
       </button>
