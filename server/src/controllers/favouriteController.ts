@@ -3,7 +3,7 @@
 import { Context } from "koa";
 import pluralize from "pluralize";
 
-import { Favourites, FavouriteInt, IngredientInt } from '../models/favouriteModel';
+import { Favourites, FavouriteInt } from '../models/favouriteModel';
 
 type SeasonalIngredients = {
   seasonalIngredients: string[];

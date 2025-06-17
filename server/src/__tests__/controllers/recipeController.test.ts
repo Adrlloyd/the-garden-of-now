@@ -1,7 +1,7 @@
-import { getRecipesBySeason } from '../controllers/recipeController';
-import { Recipes } from '../models/recipeModel';
+import { getRecipesBySeason } from '../../controllers/recipeController';
+import { Recipes } from '../../models/recipeModel';
 
-jest.mock('../models/recipeModel');
+jest.mock('../../models/recipeModel');
 
 describe('getRecipesBySeason', () => {
   it('returns 200 and filtered recipes when matches are found', async () => {

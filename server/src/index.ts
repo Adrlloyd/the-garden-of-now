@@ -1,25 +1,10 @@
 'use strict'
 
-import Koa from 'koa';
-import bodyParser from 'koa-bodyparser';
-import serve from 'koa-static';
-import cors from '@koa/cors';
-
-import { ingredientRouter } from './routers/ingredientRouter';
-import { recipeRouter } from './routers/recipeRouter';
-import { favouriteRouter } from './routers/favouriteRouter';
+import app from './app';
 import { config } from './config';
 
-const app = new Koa();
-const PORT = config.port
+const PORT = config.port;
 
-app.use(cors());
-app.use(serve(config.path))
-app.use(bodyParser());
-app.use(ingredientRouter.routes());
-app.use(recipeRouter.routes());
-app.use(favouriteRouter.routes());
-
-app.listen(PORT);
-
-console.log(`Server listening on port ${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

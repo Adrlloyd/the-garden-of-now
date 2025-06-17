@@ -2,11 +2,11 @@ import {
   getFavouritesBySeason,
   postFavourite,
   deleteFavourite
-} from '../controllers/favouriteController';
+} from '../../controllers/favouriteController';
 
-import { Favourites } from '../models/favouriteModel';
+import { Favourites } from '../../models/favouriteModel';
 
-jest.mock('../models/favouriteModel');
+jest.mock('../../models/favouriteModel');
 
 describe('favouriteController', () => {
   let ctx: any;

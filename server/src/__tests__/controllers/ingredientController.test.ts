@@ -1,5 +1,5 @@
-import { getIngredientsBySeason } from '../controllers/ingredientController';
-import { SeasonalIngredients, NonSeasonalIngredients } from '../models/ingredientModel';
+import { getIngredientsBySeason } from '../../controllers/ingredientController';
+import { SeasonalIngredients, NonSeasonalIngredients } from '../../models/ingredientModel';
 
 describe('getIngredientsBySeason', () => {
   it('returns 200 and all ingredients when month is valid', async () => {
