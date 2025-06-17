@@ -1,4 +1,4 @@
-import { getRecipesBySeason } from '../controllers/recipe-controller';
+import { getRecipesBySeason } from '../controllers/recipeController';
 import { Recipes } from '../models/recipe-model';
 
 jest.mock('../models/recipe-model'); // This tells Jest to mock the Recipes model
@@ -93,11 +93,15 @@ describe('getRecipesBySeason', () => {
       body: null
     };
 
+    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
     (Recipes.find as jest.Mock).mockRejectedValue(new Error('Database failure'));
 
     await getRecipesBySeason(ctx);
 
     expect(ctx.status).toBe(500);
     expect(ctx.body).toEqual({ error: 'Internal server error' });
+
+    consoleSpy.mockRestore();
   });
 });

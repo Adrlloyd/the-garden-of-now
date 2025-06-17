@@ -17,13 +17,15 @@ const getIngredientsBySeason = async (ctx: Context) => {
       return;
     }
     const foodGroupKeys : FoodGroupKeys[] = ['vegetables', 'fruit', 'nutsAndHerbs', 'meat', 'fish'];
-    const seasonalIngredientsCollated = foodGroupKeys.flatMap((key) => {return seasonalIngredientsMaster[key]});
+    console.log('seasonalIngredientsMaster:', seasonalIngredientsMaster);
+    const seasonalIngredientsCollated = foodGroupKeys.flatMap((key) => {return seasonalIngredientsMaster[key] || [] });
     const totalIngredientsCollated = [...seasonalIngredientsCollated, ...nonSeasonalIngredientsMaster['ingredients']];
     ctx.body = totalIngredientsCollated;
     ctx.status = 200;
   } catch (error) {
     console.error(error);
     ctx.status = 500;
+    ctx.body = { error: 'Internal server error' };
   }
 }
 
