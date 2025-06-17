@@ -17,7 +17,6 @@ const getIngredientsBySeason = async (ctx: Context) => {
       return;
     }
     const foodGroupKeys: FoodGroupKeys[] = ['vegetables', 'fruit', 'nutsAndHerbs', 'meat', 'fish'];
-    console.log('seasonalIngredientsMaster:', seasonalIngredientsMaster);
     const seasonalIngredientsCollated = foodGroupKeys.flatMap((key) => { return seasonalIngredientsMaster[key] || [] });
     const totalIngredientsCollated = [...seasonalIngredientsCollated, ...nonSeasonalIngredientsMaster['ingredients']];
     ctx.body = totalIngredientsCollated;
