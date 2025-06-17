@@ -3,7 +3,7 @@
 import { Context } from "koa";
 import pluralize from "pluralize";
 
-import { Recipes, RecipesInt, IngredientsInt } from '../models/recipe-model';
+import { Recipes } from '../models/recipe-model';
 
 type SeasonalIngredients = {
   seasonalIngredients: string[];
@@ -24,7 +24,7 @@ const getRecipesBySeason = async (ctx: Context) => {
         return standardizedIngredients.includes(ingredientName);
       })
     })
-    if (!filteredRecipes) {
+    if (filteredRecipes.length === 0) {
       ctx.status = 404;
       ctx.body = { error: 'The database does not contain recipes for this month' };
       return;
@@ -34,6 +34,7 @@ const getRecipesBySeason = async (ctx: Context) => {
   } catch (error) {
     console.error(error);
     ctx.status = 500;
+    ctx.body = { error: 'Internal server error' };
   }
 }
 

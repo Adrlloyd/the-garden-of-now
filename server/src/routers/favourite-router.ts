@@ -2,7 +2,7 @@
 
 import Router from 'koa-router'
 
-import { getFavouritesBySeason, postFavourite, deleteFavourite } from '../controllers/favourite-controller';
+import { getFavouritesBySeason, postFavourite, deleteFavourite } from '../controllers/favouriteController';
 
 const favouriteRouter = new Router()
 

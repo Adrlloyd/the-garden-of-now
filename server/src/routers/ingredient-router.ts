@@ -2,7 +2,7 @@
 
 import Router from 'koa-router';
 
-import { getIngredientsBySeason } from '../controllers/ingredient-controller';
+import { getIngredientsBySeason } from '../controllers/ingredientController';
 
 const ingredientRouter = new Router();
 
