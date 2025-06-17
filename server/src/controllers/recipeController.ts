@@ -3,7 +3,7 @@
 import { Context } from "koa";
 import pluralize from "pluralize";
 
-import { Recipes } from '../models/recipe-model';
+import { Recipes } from '../models/recipeModel';
 
 type SeasonalIngredients = {
   seasonalIngredients: string[];
@@ -14,7 +14,7 @@ const standardizeIngredient = (name: string) => {
 }
 
 const getRecipesBySeason = async (ctx: Context) => {
-  const {seasonalIngredients} = ctx.request.body as SeasonalIngredients;
+  const { seasonalIngredients } = ctx.request.body as SeasonalIngredients;
   const standardizedIngredients = seasonalIngredients.map(standardizeIngredient);
   try {
     const allRecipes = await Recipes.find();

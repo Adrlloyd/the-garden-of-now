@@ -5,9 +5,9 @@ import bodyParser from 'koa-bodyparser';
 import serve from 'koa-static';
 import cors from '@koa/cors';
 
-import { ingredientRouter } from './routers/ingredient-router';
-import { recipeRouter } from './routers/recipe-router';
-import { favouriteRouter } from './routers/favourite-router';
+import { ingredientRouter } from './routers/ingredientRouter';
+import { recipeRouter } from './routers/recipeRouter';
+import { favouriteRouter } from './routers/favouriteRouter';
 import { config } from './config';
 
 const app = new Koa();

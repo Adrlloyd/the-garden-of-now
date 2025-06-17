@@ -3,7 +3,7 @@
 import { Context } from "koa";
 import pluralize from "pluralize";
 
-import { Favourites, FavouriteInt, IngredientInt } from '../models/favourite-model';
+import { Favourites, FavouriteInt, IngredientInt } from '../models/favouriteModel';
 
 type SeasonalIngredients = {
   seasonalIngredients: string[];
@@ -34,6 +34,7 @@ const getFavouritesBySeason = async (ctx: Context) => {
   } catch (error) {
     console.error(error);
     ctx.status = 500;
+    ctx.body = { error: 'Internal server error' };
   }
 }
 
@@ -52,6 +53,7 @@ const postFavourite = async (ctx: Context) => {
   } catch (error) {
     console.error(error);
     ctx.status = 500;
+    ctx.body = { error: 'Internal server error' };
   }
 }
 
@@ -69,6 +71,7 @@ const deleteFavourite = async (ctx: Context) => {
   } catch (error) {
     console.error(error);
     ctx.status = 500;
+    ctx.body = { error: 'Internal server error' };
   }
 }
 

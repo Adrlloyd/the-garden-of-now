@@ -1,5 +1,5 @@
 import { getIngredientsBySeason } from '../controllers/ingredientController';
-import { SeasonalIngredients, NonSeasonalIngredients } from '../models/ingredient-model';
+import { SeasonalIngredients, NonSeasonalIngredients } from '../models/ingredientModel';
 
 describe('getIngredientsBySeason', () => {
   it('returns 200 and all ingredients when month is valid', async () => {
@@ -58,7 +58,7 @@ describe('getIngredientsBySeason', () => {
       body: null
     };
 
-    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => { });
 
     jest.spyOn(SeasonalIngredients, 'findOne').mockRejectedValue(new Error('DB failure'));
 

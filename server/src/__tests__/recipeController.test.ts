@@ -1,7 +1,7 @@
 import { getRecipesBySeason } from '../controllers/recipeController';
-import { Recipes } from '../models/recipe-model';
+import { Recipes } from '../models/recipeModel';
 
-jest.mock('../models/recipe-model'); // This tells Jest to mock the Recipes model
+jest.mock('../models/recipeModel');
 
 describe('getRecipesBySeason', () => {
   it('returns 200 and filtered recipes when matches are found', async () => {
@@ -93,7 +93,7 @@ describe('getRecipesBySeason', () => {
       body: null
     };
 
-    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => { });
 
     (Recipes.find as jest.Mock).mockRejectedValue(new Error('Database failure'));
 
