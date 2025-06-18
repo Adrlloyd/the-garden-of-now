@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import RecipeDetail from '../../pages/RecipeDetail';
 import type { Recipe } from '../../types/recipe';
+import userEvent from '@testing-library/user-event';
 jest.mock('../../config', () => ({
   API_URL: '',
 }));
@@ -45,7 +46,7 @@ test ('render recipe detail information', () => {
 
 });
 
-test('shows '+' btn and calls addFavourites when clicked', ()=> {
+test('shows '+' btn and calls addFavourites when clicked', async ()=> {
   const addToFavouritesMock = jest.fn();
   render( 
   <RecipeDetail
@@ -56,7 +57,7 @@ test('shows '+' btn and calls addFavourites when clicked', ()=> {
   />
 );
 const btn = screen.getByRole('button', {name: '+'});
-fireEvent.click(btn);
+await userEvent.click(btn);
 // check if fun is called 1 time
 expect(addToFavouritesMock).toHaveBeenCalledTimes(1);
 //verifies that the function was called with the mockRecipe object as argument.
@@ -64,7 +65,7 @@ expect(addToFavouritesMock).toHaveBeenCalledWith(mockRecipe);
 
 })
 
-test('shows - btn and calls deleteFromFavourites when clicked', ()=> {
+test('shows - btn and calls deleteFromFavourites when clicked', async ()=> {
   const deleteFromFavouritesMock = jest.fn();
   render( 
   <RecipeDetail
@@ -75,7 +76,7 @@ test('shows - btn and calls deleteFromFavourites when clicked', ()=> {
   />
 );
 const btn = screen.getByRole('button', {name: '-'});
-fireEvent.click(btn);
+await userEvent.click(btn);
 // check if fun is called 1 time
 expect(deleteFromFavouritesMock).toHaveBeenCalledTimes(1);
 //verifies that the function was called with the mockRecipe object as argument.
