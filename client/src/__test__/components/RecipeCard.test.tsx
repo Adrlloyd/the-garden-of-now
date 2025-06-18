@@ -3,11 +3,12 @@
 // fireEvent: simulates user events like clicks, typing, etc.
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-jest.mock('../config', () => ({
+jest.mock('../../config', () => ({
   API_URL: '',
 })); // This replaces the real API_URL from config with an empty string,so the test doesn't crash because Jest can't read import.meta.env (it's a Vite feature).
-import RecipeCard from './RecipeCard';
-import { Recipe } from '../types/recipe';
+import RecipeCard from '../../components/RecipeCard';
+import { Recipe } from '../../types/recipe';
+import userEvent from '@testing-library/user-event';
 
 // mockRecipe object representing a real recipe.
 
@@ -34,7 +35,7 @@ const mockRecipe: Recipe = {
 
 //  check that the recipe name is displayed in the component
 
-test('displays the recipe name', () => {
+test('displays the recipe name',  () => {
 render(
   <RecipeCard
   recipe={mockRecipe}
@@ -55,7 +56,7 @@ expect(screen.getByText(/lunch/i)).toBeInTheDocument();
 
 // Check that clicking the + button calls the addToFavourites function with the recipe.
 
-test('calls addToFavourites when + btn is clicked', ()=> {
+test('calls addToFavourites when + btn is clicked', async()=> {
   //creat mocj fn 
   const addToFavouritesMock = jest.fn();
 
@@ -72,7 +73,7 @@ test('calls addToFavourites when + btn is clicked', ()=> {
 
  // simulate user click btn
 
- fireEvent.click(btn);
+ await userEvent.click(btn);
 
  
  expect(addToFavouritesMock).toHaveBeenCalledTimes(1);
@@ -82,7 +83,7 @@ test('calls addToFavourites when + btn is clicked', ()=> {
 
 // Check that clicking the - button calls the deleteFromFavourites function. 
 
-test('calls deleteFromFavorites when - btn is clicked', ()=> {
+test('calls deleteFromFavorites when - btn is clicked', async ()=> {
   //creat mocj fn 
   const deleteFromFavouritesMock = jest.fn();
 
@@ -99,7 +100,7 @@ test('calls deleteFromFavorites when - btn is clicked', ()=> {
 
  // simulate user click btn
 
- fireEvent.click(btn);
+ await userEvent.click(btn);
 
  
  expect(deleteFromFavouritesMock).toHaveBeenCalledTimes(1);
@@ -109,7 +110,7 @@ test('calls deleteFromFavorites when - btn is clicked', ()=> {
 
 // Test that clicking on the recipe card container calls fireRecipeResponse
 
-test('calls fireRecipeResponse when the card is clicked', () => {
+test('calls fireRecipeResponse when the card is clicked',async () => {
   const fireRecipeResponseMock = jest.fn()
 
   render(
@@ -122,6 +123,6 @@ test('calls fireRecipeResponse when the card is clicked', () => {
   />
 )
 const cardContainer = screen.getByTestId('recipe-card'); //A data-testid="recipe-card" was added to the component RecipeCard.tsx
- fireEvent.click(cardContainer);
+ await userEvent.click(cardContainer);
  expect(fireRecipeResponseMock).toHaveBeenCalledWith(mockRecipe);
 })

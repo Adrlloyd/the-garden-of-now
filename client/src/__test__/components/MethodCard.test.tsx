@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import MethodCard from './MethodCard';
-import { MethodStep } from '../types/method';
+import MethodCard from '../../components/MethodCard';
+import { MethodStep } from '../../types/method';
 
 // mockStep representing a recipe instruction
  const mockStep = {
@@ -15,6 +15,6 @@ import { MethodStep } from '../types/method';
 
   //check that heading and body appear un the dom
 
-  expect(screen.getByText(/Step 1/i)).toBeInTheDocument();
+  expect(screen.getByRole('heading', {name: /step 1/i})).toBeInTheDocument();
   expect(screen.getByText(/Mix the ingredients/i)).toBeInTheDocument();
  })

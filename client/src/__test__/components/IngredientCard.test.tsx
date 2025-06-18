@@ -1,7 +1,7 @@
 import {render, screen} from '@testing-library/react';
 import '@testing-library/jest-dom';
-import IngredientCard from './IngredientCard';
-import { Ingredient } from '../types/ingredients';
+import IngredientCard from '../../components/IngredientCard';
+import { Ingredient } from '../../types/ingredients';
 
 // mock ingredient obj
 
