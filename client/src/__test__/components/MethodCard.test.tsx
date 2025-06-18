@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import MethodCard from './MethodCard';
-import { MethodStep } from '../types/method';
+import MethodCard from '../../components/MethodCard';
+import { MethodStep } from '../../types/method';
 
 // mockStep representing a recipe instruction
  const mockStep = {

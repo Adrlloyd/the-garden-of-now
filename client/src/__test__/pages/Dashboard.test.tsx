@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Dashboard from './Dashboard';
-import { VIEWS } from  '../view/views';
-jest.mock('../config', () => ({
+import Dashboard from '../../pages/Dashboard';
+import { VIEWS } from  '../../view/views';
+jest.mock('../../config', () => ({
   API_URL: '',
 }));
 

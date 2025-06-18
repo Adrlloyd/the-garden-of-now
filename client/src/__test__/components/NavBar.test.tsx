@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import NavBar from './NavBar';
-import type { NavbarProps } from '../types/navbar';
+import NavBar from '../../components/NavBar';
+import type { NavbarProps } from '../../types/navbar';
 
 // test the NavBar render both btns and calls the correct function
 

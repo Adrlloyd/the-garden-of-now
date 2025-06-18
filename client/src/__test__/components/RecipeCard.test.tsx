@@ -3,11 +3,11 @@
 // fireEvent: simulates user events like clicks, typing, etc.
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-jest.mock('../config', () => ({
+jest.mock('../../config', () => ({
   API_URL: '',
 })); // This replaces the real API_URL from config with an empty string,so the test doesn't crash because Jest can't read import.meta.env (it's a Vite feature).
-import RecipeCard from './RecipeCard';
-import { Recipe } from '../types/recipe';
+import RecipeCard from '../../components/RecipeCard';
+import { Recipe } from '../../types/recipe';
 
 // mockRecipe object representing a real recipe.
 

@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Home from './Home';
+import Home from '../../pages/Home';
 
 test('calls fireButtonResponse when is clicked', () => {
   const fireButtonResponseMock = jest.fn();

@@ -1,8 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import RecipeDetail from './RecipeDetail';
-import type { Recipe } from '../types/recipe';
-jest.mock('../config', () => ({
+import RecipeDetail from '../../pages/RecipeDetail';
+import type { Recipe } from '../../types/recipe';
+jest.mock('../../config', () => ({
   API_URL: '',
 }));
 
